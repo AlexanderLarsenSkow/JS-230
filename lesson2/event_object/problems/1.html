@@ -1,0 +1,77 @@
+<!-- Skeleton or Scaffold for Creating HTML documents -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>your page title goes here</title>
+    <meta charset="utf-8">
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      .x {
+        position: absolute;
+        transform: rotate(45deg);
+        top: 20px;
+        left: 20px;
+      }
+      
+      .x .horizontal {
+        width: 45px;
+        height: 5px;
+        position: absolute;
+        left: -20px;
+        background: red;
+      }
+    
+      .x .vertical {
+        height: 45px;
+        width: 5px;
+        background: red;
+        position: absolute;
+        left: 0px;
+        top: -20px;
+      }
+    </style>
+    <script>
+      // for problem 2: change to mousemove from click
+      document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('mousemove', event => {
+          let x = document.getElementsByClassName('x')[0];
+          x.style.top = `${event.clientY}px`;
+          x.style.left = `${event.clientX}px`;
+        });
+
+        document.addEventListener('keydown', event => {
+          let horizontal = document.querySelector('.x .horizontal');
+          let vertical = document.querySelector('.x .vertical');
+          let color;
+
+          switch(event.key) {
+            case 'b':
+              color = 'blue';
+              break;
+            case 'g':
+              color = 'green';
+              break;
+            case 'r':
+              color = 'red';
+              break;
+            default:
+              return;
+          }
+
+          horizontal.style.background = color;
+          vertical.style.background = color;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="x">
+      <div class="horizontal"></div>
+      <div class="vertical"></div>
+    </div>
+  </body>
+</html>

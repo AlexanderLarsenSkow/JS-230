@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Event Object Example</title>
+    <meta charset="utf-8">
+    <style>
+      body { padding: 1em; }
+      .example { border: dotted 2px blue; padding: .5em 1em;}
+      .example ul { border: dotted 2px red; padding: 1em;}
+      .example li { border: dotted 2px purple; padding: 1em; }
+      .example span { border: dotted 2px green; padding: 0.5em; }
+
+      div:hover, ul:hover, li:hover, span:hover {
+        border-style: solid;
+      }
+    </style>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.addEventListener('click', event => {
+          let p = document.getElementById('message');
+          let p2 = document.getElementById('message2');
+
+          let elementClicked = event.target;
+          let elementAttached = event.currentTarget;
+
+          p.textContent = elementClicked.tagName;
+          p2.textContent = elementAttached.tagName;
+        });
+      })
+    </script>
+  </head>
+  <body>
+    <div class="example">
+      <ul>
+        <li><span>First</span> element</li>
+        <li><span>Second</span> element</li>
+        <li><span>Third</span> element</li>
+      </ul>
+    </div>
+
+    <p>The last clicked element was ('target'): <span id="message">none</span>.</p>
+    <p>The element the event listener was attached to ('currentTarget'): <span id="message2">none</span>.</p>
+  </body>
+</html>

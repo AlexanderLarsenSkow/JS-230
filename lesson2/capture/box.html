@@ -1,0 +1,71 @@
+<!-- Skeleton or Scaffold for Creating HTML documents -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>boxes</title>
+    <meta charset="utf-8">
+    <style>
+      #elem1 {
+        background-color: green;
+        position: relative;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      #elem2 {
+        background-color: blue;
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        width: 150px;
+        height: 150px;
+      }
+
+      #elem3 {
+        background-color: red;
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        width: 100px;
+        height: 100px;
+        line-height: 25px;
+      }
+
+      #elem4 {
+        background-color: yellow;
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        let elem1 = document.querySelector('#elem1');
+        let elem4 = document.querySelector('#elem4');
+        
+        elem1.addEventListener('click', function(event) {
+          alert(this.id);
+        }), true;
+        elem4.addEventListener('click', event => alert(event.currentTarget.id));
+      });
+
+    </script>
+  </head>
+  <body>
+    <div id="elem1">1
+      <div id="elem2"2>
+        <div id="elem3">3
+        <div id="elem4">4
+          <p id="paragraph">This is a p tag</p>
+          </div>
+        <p id="under3">This is under div 3</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
