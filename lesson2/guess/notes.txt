@@ -1,0 +1,12 @@
+Computer
+  - chooses a number between 1 and 100
+
+Player
+  - guesses a number
+
+Computer
+  - tells player if number is greater or less than number
+
+Player guesses again
+  - repeat
+  - count the number of guesses it took to get it.
