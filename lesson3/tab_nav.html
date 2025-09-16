@@ -1,0 +1,56 @@
+<!-- Tab Navigation -->
+
+<html>
+  <head>
+    <style>
+      article {
+        display: none;
+      }
+    </style>
+    <script>
+      function makeHidden(articles) {
+        let visible = articles.find(article => {
+          return article.style.display === 'block';
+        });
+
+        if (visible) visible.style.display = 'none';
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const list = document.querySelector('ul');
+
+        list.addEventListener('click', event => {
+          event.preventDefault();
+          let target = event.target;
+
+          if (target.tagName === 'A') {
+            let articles = Array.from(document.querySelectorAll('article'));
+            makeHidden(articles);
+
+            let data = target.dataset.block;
+            let article = document.querySelector(`article[data-block="${data}"]`);
+            article.style.display = 'block';
+          }
+        });
+      });
+    </script>
+  </head>
+<ul>
+  <li><a href="#" data-block="gold">Gold Sponsors</a></li>
+  <li><a href="#" data-block="silver">Silver Sponsors</a></li>
+  <li><a href="#" data-block="bronze">Bronze Sponsors</a></li>
+</ul>
+
+<article data-block="gold">
+  <h1>Gold Sponsors</h1>
+</article>
+
+<article data-block="silver">
+  <h1>Silver Sponors</h1>
+</article>
+
+<article data-block="bronze">
+  <h1>Bronze Sponsors</h1>
+</article>
+
+</html>

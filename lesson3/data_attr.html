@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const goldTab = document.querySelector('a[data-block="gold"]');
+
+        console.log(goldTab);
+        console.log(goldTab.dataset.block); // 'gold'
+        console.log(typeof goldTab.dataset); // object
+        // block is a property on this dataset object
+
+        goldTab.dataset.block = 'platinum'; // changing the property value
+
+        console.log(goldTab.dataset.block); // platinum
+
+        delete goldTab.dataset.block; // remove the property from the dataset object
+
+        console.log(goldTab.dataset.block); // undefined
+      });
+    </script>
+  </head>
+<ul>
+  <li><a href="#" data-block="gold">Gold Sponsors</a></li>
+  <li><a href="#" data-block="silver">Silver Sponsors</a></li>
+  <li><a href="#" data-block="bronze">Bronze Sponsors</a></li>
+</ul>
+
+<article data-block="gold">
+  <h1>Gold Sponsors</h1>
+</article>
+
+<article data-block="silver">
+  <h1>Silver Sponors</h1>
+</article>
+
+<article data-block="bronze">
+  <h1>Bronze Sponsors</h1>
+</article>
+
+</html>
