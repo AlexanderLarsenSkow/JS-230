@@ -1,0 +1,12 @@
+PEDAC
+
+Elements to identify:
+
+h1 element that is the answer of the math problem
+
+2 input number types that are the numbers being evaluated
+
+operator that determines the function called.
+  - add, subtract, multiply, divide functions
+
+event listener given to the submit button (= sign button)
