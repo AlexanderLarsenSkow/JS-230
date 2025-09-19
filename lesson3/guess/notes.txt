@@ -1,0 +1,23 @@
+Games starts with hidden array of words
+words are picked at random
+
+take keyboard input from user
+user guesses letters from word
+
+if letter shows up, then it is revealed in the words row
+The letter shows up in guesses every time
+
+If letter is in word, then no apples disappear
+If not in word, one apple disappears (class for apple id element)
+
+If player wins, link shows up to play another game
+
+win message
+
+if player loses, link shows up
+lose message
+
+new game: reduces array of words by 1 (splice)
+
+Getting guessLetters:
+  copy and map it to empty strings.

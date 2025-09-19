@@ -1,0 +1,73 @@
+main {
+  width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  /* background: rgb(190, 72, 72); */
+}
+
+#tree {
+  position: relative;
+  margin: 0 auto;
+  width: 678px;
+  height: 517px;
+  background-image: url(https://d3905n0khyu9wc.cloudfront.net/guess_a_word/images/tree.png);
+}
+
+#apples {
+  position: absolute;
+  z-index: 1;
+  left: 170px;
+  top: 20px;
+  width: 374px;
+  height: 322px;
+  background-image: url(https://d3905n0khyu9wc.cloudfront.net/guess_a_word/images/apples.png);
+}
+
+#apples.guess_1 { background-position: 0 -322px; }
+#apples.guess_2 { background-position: 0 -644px; }
+#apples.guess_3 { background-position: 0 -966px; }
+#apples.guess_4 { background-position: 0 -1288px; }
+#apples.guess_5 { background-position: 0 -1610px; }
+#apples.guess_6 { display: none; }
+
+#spaces,
+#guesses,
+p {
+  padding: 0 0 40px 0;
+}
+
+p {
+  font-size: 20px;
+  padding-bottom: 25px;
+}
+
+p:empty {
+  display: none;
+}
+
+h2 {
+  display: inline-block;
+  margin: 0;
+  width: 100px;
+  vertical-align: middle;
+}
+
+span {
+  display: inline-block;
+  width: 20px;
+  height: 30px;
+  margin: 0 10px 0 0;
+  font-size: 28px;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: top;
+  border-bottom: 3px solid black;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: inline;
+}
