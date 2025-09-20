@@ -1,5 +1,6 @@
 body {
   background-color: rgb(47, 34, 62);
+  min-height: 1050px;
 }
 
 body * {
@@ -30,9 +31,15 @@ img {
 }
 
 figcaption {
-   display: none;
-   position: absolute;
-   z-index: 1;
+  position: absolute;
+  z-index: 5;
   background-color: black;
-  opacity: 80%;
+  opacity: 0;
+  width: 350px;
+  padding: 20px;
+  border-radius: 4px;
+  margin: 0 auto;
+  text-align: center;
+  transition: all .3s;
+  pointer-events: none;
 }
