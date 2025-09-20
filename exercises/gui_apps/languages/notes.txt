@@ -1,0 +1,13 @@
+Requirements:
+  - create collection of programming languages
+  - display heading and paragraph for each lang
+  - display first 120 chars for each paragraph
+  - Each paragraph includes a show more button that extends it.
+
+Functionality after clicking button:
+  - display entire paragraph 
+  - change button text to Show Less
+
+Functionality after clicking show Less
+  - change button text to show more
+  - hide all but the first 120 chars.
