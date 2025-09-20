@@ -1,0 +1,10 @@
+Layout:
+8 images lined up in a row
+
+Features:
+  hover over an image for a few seconds and a small tooltip appears directly below the image.
+  This is a black box with white text that includes more information about the animal.
+
+Methods:
+  setTimeout()
+  mouseenter event listener

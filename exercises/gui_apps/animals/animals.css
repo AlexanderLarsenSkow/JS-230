@@ -1,0 +1,38 @@
+body {
+  background-color: rgb(47, 34, 62);
+}
+
+body * {
+  color: white;
+  text-align: center;
+  font-family: sans-serif, arial, helvetica;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+figure {
+  display: flex;
+  width: 375px;
+  height: 225px;
+  background-color: white;
+  border-radius: 4px;
+  margin: 20px;
+}
+
+img {
+  margin: auto;
+  width: 350px;
+  height: 200px;
+}
+
+figcaption {
+   display: none;
+   position: absolute;
+   z-index: 1;
+  background-color: black;
+  opacity: 80%;
+}
