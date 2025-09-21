@@ -1,0 +1,7 @@
+Changes to the application:
+
+adding right clicking event for todo items that results in context menu.
+  context menu has
+    - show details
+    - edit todo
+    - delete todo

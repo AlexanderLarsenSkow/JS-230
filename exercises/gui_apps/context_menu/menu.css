@@ -1,0 +1,107 @@
+body {
+  background-color: rgb(8, 68, 123);
+}
+
+body * {
+  color: rgb(254, 224, 224);
+}
+
+main {
+  width: 55%;
+}
+
+ul div {
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  border-radius: 3px;
+  padding: 3px;
+  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+ul div * {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+li {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
+  width: 40%;
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul div button {
+  color: rgb(203, 62, 62);
+  background: none;
+  border: none;
+  font-size: 24px;
+  height: 90%;
+  margin: auto 10px;
+}
+
+#prompt {
+  display: none;
+  background-color: white;
+  position: absolute;
+  z-index: 10;
+  left: 600px;
+  top: 100px;
+  width: 400px;
+  height: 120px;
+  border-radius: 3px;
+}
+
+p {
+  color: black;
+  font-size: 18px;
+  text-align: center;
+}
+
+#confirm {
+  width: 50%;
+  height: 23%;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: right;
+}
+
+#confirm button {
+  color: white;
+  border: none;
+  border-radius: 3px;
+  width: 35%;
+  height: 100%;
+}
+
+.delete {
+  background-color: rgb(230, 72, 72);
+}
+
+.cancel {
+  background-color: rgb(13, 184, 13);
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.show {
+  display: block;
+}
