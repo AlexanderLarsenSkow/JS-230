@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const prompt = document.querySelector('#prompt');
   const confirm = prompt.querySelector('.delete');
   const overlay = document.querySelector('.overlay');
+  const contextMenu = document.querySelector('.context-menu');
 
   const app = (function() {
     return {
@@ -45,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         prompt.style.display = 'none';
       },
 
-      toggleOverlay() {
-        overlay.classList.toggle('show');
+      toggleShow(element) {
+        element.classList.toggle('show');
       },
 
       getDataId(button) {
@@ -71,30 +72,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setPrompt(dataId) {
         prompt.dataset.id = dataId;
-        this.toggleOverlay();
+        this.toggleShow(overlay);
         this.showPrompt();
         this.promptMessage(dataId)
       },
 
       resetPrompt() {
         prompt.dataset.id = '0';
-        this.toggleOverlay();
+        this.toggleShow(overlay);
         this.hidePrompt();
       },
 
-      setDeleteButton() {        
-        list.addEventListener('click', event => {
-          event.stopPropagation();
-          let element = event.target;
+      handleDeleteClick(event) {
+        event.stopPropagation();
+        contextMenu.classList.remove('show');
+        let element = event.target;
 
-          if (element.tagName === 'BUTTON' && this.isHidden()) {
-            let dataId = this.getDataId(element);
-            this.setPrompt(dataId);
-          }
-          else if (!this.isHidden()) {
-            this.resetPrompt();
-          }
+        if (element.tagName === 'BUTTON' && this.isHidden()) {
+          let id = element.dataset.id;
+          let dataId = id ? id : this.getDataId(element);
+          
+          this.setPrompt(dataId);
+        }
+        else if (!this.isHidden()) {
+          this.resetPrompt();
+        }
+      },
+
+      setDeleteButton() {        
+        list.addEventListener('click', this.handleDeleteClick.bind(this)); 
+      },
+
+      setContextButtons() {
+        contextMenu.addEventListener('click', event => {
+          event.stopPropagation();
+
+          let element = event.target;
+          if (element.classList.contains('delete-menu')) return;
         });
+
+        contextMenu.lastElementChild.addEventListener('click', 
+          this.handleDeleteClick.bind(this)
+        );
+      },
+
+      setContextMenu() {
+        list.addEventListener('contextmenu', event => {
+          event.preventDefault();
+          let div = event.target.closest('div');
+          let deleteButton = contextMenu.lastElementChild;
+          
+          deleteButton.dataset.id = div.dataset.id;
+
+          if (contextMenu.classList.contains('show')) {
+            this.toggleShow(contextMenu);
+          }
+
+          let [x, y] = [event.clientX, event.clientY];
+
+          this.toggleShow(contextMenu);
+          contextMenu.style.top = `${y}px`;
+          contextMenu.style.left = `${x}px`;
+        });
+
+        this.setContextButtons();
       },
 
       confirmDelete() {
@@ -112,6 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setCancel() {
         document.addEventListener('click', () => {
+          contextMenu.classList.remove('show');
+
           if (!this.isHidden()) {
             this.resetPrompt();
           }
@@ -121,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
       initialize() {
         this.renderList();
         this.setDeleteButton();
+        this.setContextMenu();
         this.confirmDelete();
         this.setCancel();
       }

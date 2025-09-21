@@ -104,7 +104,8 @@ p {
 
 .context-menu {
   display: none;
-  width: 25%;
+  position: absolute;
+  width: 17%;
   box-sizing: border-box;
 }
 
@@ -116,6 +117,7 @@ p {
   background-color: rgb(193, 192, 192);
   color: black;
   font-size: 16px;
+  text-align: left;
   width: 100%;
   border: 1px solid white;
   border-radius: 3px;
