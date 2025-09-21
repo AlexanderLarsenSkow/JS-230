@@ -1,0 +1,32 @@
+Requirements:
+  - create list of todos in DOM from JS array
+  - Add a delete button for each todo
+
+  - Click event on button: 
+    - prompts confirmation prompt (build with CSS)
+    - confirmation prompt has yes and no buttons
+    - The prompt should include title of todo being deleted
+    - click yes: todo is deleted / prompt disappears
+    - click no: todo is not deleted / prompt disappears
+    - click outside the prompt: todo not deleted / prompt disappears
+
+application object methods:
+  renderList
+    - for each list item, render all HTML for page.
+    - after html rendering,
+      - add a click event to the button for deleting a todo
+      - when a button is clicked, it should prompt the delete prompt
+        - this sets the display on the delete_prompt to block from none
+      - clicking yes causes the todo to be deleted (remove div)
+      - clicking no causes it to disappear (also yes) but no deletion.
+
+    important methods:
+      - need to find the todo to be deleted.
+
+First Draft Notes:
+  - didn't address overlay: users can still interact with other buttons when prompt is up.
+  - HTML standards not met with <div> following <ul> element
+  - Should delete todo from JS data structure while also removing it from DOM.
+  
+
+
