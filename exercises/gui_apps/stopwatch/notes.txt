@@ -1,0 +1,35 @@
+stop watch needs 4 2-digit timers:
+  - hours (00 - 99)
+  - minutes (00 - 59)
+  - seconds (00 - 59)
+  - centiseconds (00 - 99)
+
+  All counters should have a leading zero when the corresponding value is less than 10
+
+  centiseconds:
+    - 10 ms
+    - 1 / 100th of 1 second
+
+  Controls for Stop Watch:
+    - Start and Stop button
+    - reset button (reset everything)
+
+  Functionality:
+    - click start button:
+      - text on the button changes to "Stop"
+      - timer starts running centiseconds counter
+      - when centiseconds timer reaches 100, resets to zero and second counter starts incrementing
+      - when seconds reaches 60, resets to zero and minutes counter starts incrementing 
+      - when minutes reaches 60, resets to zero and minutes counter starts incrementing
+
+    - click stop button:
+      - timer stops
+      - button text changes to "Start"
+
+    - click reset button:
+      - The timer stops running if it's running
+      - all timers reset to 00.
+
+Code Design Notes:
+  - build out class first in console.
+  - 

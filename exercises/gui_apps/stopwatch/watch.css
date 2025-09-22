@@ -1,0 +1,40 @@
+body {
+  background-color: rgb(255, 255, 40);
+}
+
+body * {
+  text-align: center;
+  font-size: 40px;
+}
+
+header {
+  border-bottom: 3px solid black;
+}
+
+.timers {
+  margin: 20px 0;
+}
+
+.timers span {
+  font-weight: bold;
+  font-size: 48px;
+  font-variant-numeric: tabular-nums;
+}
+
+.buttons {
+  margin: 40px 0;
+}
+
+.buttons button {
+  font-size: 30px;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+.buttons button:hover {
+  background-color: rgb(19, 18, 18);
+}
