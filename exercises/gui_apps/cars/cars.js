@@ -75,14 +75,37 @@ class CarFilter {
   }
 }
 
-let filter = new CarFilter();
-console.log(filter.uniqueModels());
-console.log(filter.uniqueMakes());
-console.log(filter.uniqueYears());
-console.log(filter.uniquePrices());
+class CarDOMInteractions {
+  constructor() {
+    this.filter = new CarFilter();
+    this.cars = this.filter.cars;
 
-console.log(filter.filter('Honda', 'Accord', 2008, 'Any'));
+    this.main = document.querySelector('main');
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   console.log('Loaded!');
-// });
+    this.renderCars();
+  }
+
+  renderCars() {
+    this.cars.forEach(car => {
+      let html = this.carTemplate(car);
+      this.main.insertAdjacentHTML('beforeend', html);
+    });
+  }
+
+  carTemplate(car) {
+    return `<figure>
+        <img src="${car.image}" alt="A picture of the ${car.make} ${car.model}">
+        <ul> 
+          <li>${car.make} ${car.model}</li>
+          <li>Year: ${car.year}</li>
+          <li>Price: $${car.price}</li>
+        </ul>
+      </figure>`
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Loaded!');
+
+  new CarDOMInteractions();
+});
