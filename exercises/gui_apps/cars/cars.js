@@ -46,12 +46,12 @@ class CarFilter {
 
   matchesYear(yearFilter, {year}) {
     if (yearFilter === CarFilter.matchAny) return true;
-    return yearFilter === year;
+    return Number(yearFilter) === year;
   }
 
   matchesPrice(priceFilter, {price}) {
     if (priceFilter === CarFilter.matchAny) return true;
-    return priceFilter === price;
+    return Number(priceFilter) === price;
   }
 
   uniqueMakes() {
@@ -89,10 +89,32 @@ class CarDOMInteractions {
 
     this.renderCars();
     this.renderOptions();
+
+    this.form.addEventListener('submit', this.handleFormSubmit.bind(this));
   }
 
-  test() {
-    console.log(this.selectOptions);
+  handleFormSubmit(event) {
+    event.preventDefault();
+    this.deleteCars();
+    this.selectCars();
+  }
+
+  deleteCars() {
+    this.main.innerHTML = '';
+  }
+
+  selectCars() {
+    const makeValue = this.makeSelect.value;
+    const modelValue = this.modelSelect.value;
+    const priceValue = this.priceSelect.value;
+    const yearValue = this.yearSelect.value;
+
+    console.log(makeValue, modelValue, priceValue, yearValue);
+
+    this.cars = this.filter.filter(makeValue, modelValue, 
+      yearValue, priceValue);
+
+    this.renderCars();
   }
 
   renderCars() {
@@ -130,7 +152,6 @@ class CarDOMInteractions {
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Loaded!');
-
-  let dom = new CarDOMInteractions();
-  dom.test();
+  
+  new CarDOMInteractions();
 });
