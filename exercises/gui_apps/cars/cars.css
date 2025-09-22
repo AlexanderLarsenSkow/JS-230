@@ -13,26 +13,43 @@ header h1 {
   text-align: center;
   width: 30%;
   padding: 5px;
-  margin: 25px auto;
+  margin: 25px auto 18px;
   border-bottom: 2px solid white;
 }
 
 header form {
-  display: flex;
-  justify-content: center;
+  padding: 10px;
 }
 
-header form label {
+header .options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 15px;
+}
+
+header .options label {
   margin: 15px;
   font-size: 18px;
   font-weight: bold;
 }
 
-header form select {
+header .options select,
+header form button {
   width: 9%;
   height: 40px;
   align-self: center;
   font-size: 18px;
+  background-color: white;
+}
+
+header form button {
+  display: block;
+  position: absolute;
+  /* right: -500px; */
+  right: 50px;
+  top: 140px;
+  margin: 10px auto;
 }
 
 main {
