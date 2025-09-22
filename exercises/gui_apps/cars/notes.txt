@@ -1,0 +1,14 @@
+Display image for car,
+make and model
+price
+and year of manufacturing
+
+Page has filtering area
+  - select box for makes. Select all unique makes and populate it.
+  - select box for models, select all lunique mdels
+  - same for years, unique years
+  - select box for price, unique prices 
+  
+  add filter button (submit button on form?)
+
+  
