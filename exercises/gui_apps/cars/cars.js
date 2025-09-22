@@ -81,8 +81,18 @@ class CarDOMInteractions {
     this.cars = this.filter.cars;
 
     this.main = document.querySelector('main');
+    this.form = document.querySelector('header form');
+    this.makeSelect = document.querySelector('#make');
+    this.modelSelect = document.querySelector('#model');
+    this.priceSelect = document.querySelector('#price');
+    this.yearSelect = document.querySelector('#year');
 
     this.renderCars();
+    this.renderOptions();
+  }
+
+  test() {
+    console.log(this.selectOptions);
   }
 
   renderCars() {
@@ -102,10 +112,25 @@ class CarDOMInteractions {
         </ul>
       </figure>`
   }
+
+  renderOptions() {
+    this.optionsTemplate(this.makeSelect, this.filter.uniqueMakes());
+    this.optionsTemplate(this.modelSelect, this.filter.uniqueModels());
+    this.optionsTemplate(this.priceSelect, this.filter.uniquePrices());
+    this.optionsTemplate(this.yearSelect, this.filter.uniqueYears());
+  }
+
+  optionsTemplate(selectElement, values) {
+    values.forEach(value => {
+      let html = `<option value="${value}">${value}</option`;
+      selectElement.insertAdjacentHTML('beforeend', html);
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Loaded!');
 
-  new CarDOMInteractions();
+  let dom = new CarDOMInteractions();
+  dom.test();
 });

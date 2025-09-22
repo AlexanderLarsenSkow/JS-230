@@ -11,4 +11,11 @@ Page has filtering area
   
   add filter button (submit button on form?)
 
-  
+  Adding the options to the form:
+    - Have arrays of unique values from each car.
+    
+  Example:
+    make:
+      - Create options inside the make select element
+      - iterate through the unique make array, add each option.
+      - 
