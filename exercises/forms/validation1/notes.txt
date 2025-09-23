@@ -16,6 +16,22 @@ Rules:
 
   :valid / :invalid as well
 
+  Important JS Properties in Constraint Validation API
+    - validationMessage
+    - validityState
+    - patternMismatch: returns true or false if pattern is not matched
+    - tooLong: returns true if too long (over maxLength)
+    - tooShort: returns true if too short (under minLength)
+    - valid: returns true if all valid
+    - valueMissing: returns true if missing and is required in HTML
+
+  Methods:
+    blur event
+
+    checkValidity()
+      returns true if element's value has no validity problems.
+        - if invalid element, fires invalid event on element
+
 Functionality:
   - When a form field loses focus, validate the field against the validation rule for hte field.
     value not valid, display a red error message to the right of hte field. add red border too
@@ -25,3 +41,6 @@ Functionality:
     - don't send the form to the server if it has any validation errors. Instead, display an error
       at the top of the page that says "Fix errors before submitting this form"
   - form validation message should disappear when user corrects all fields with an error.
+
+Event Listeners:
+  form submit

@@ -51,3 +51,10 @@ button, input {
   border: 2px solid black;
   border-radius: 4px;
 }
+
+.input-container {
+  background-color: green;
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+}
