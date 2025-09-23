@@ -1,0 +1,23 @@
+Required Change:
+
+whenever the value of the makeSelect input is changed, the it should update 
+  the models with values that only occur there.
+
+in essence:
+  find the value of makeSelect
+  - based on that value, iterate through the uniqueModels array
+  - should have a method called findMatchingMakes in CarFilter
+    - have to iterate through this array
+
+    make => 'Honda'
+    models ['Accord', 'Camry', 'Corolla', 'Swift', 'A4'];
+
+    cars
+
+    need to find the all models that exist in same object as make.
+      find the car from the model, then check if the make and car.make are the same.
+
+
+      -find the car from model 
+  - just filter
+  - then re-render

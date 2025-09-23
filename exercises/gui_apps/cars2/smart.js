@@ -54,6 +54,19 @@ class CarFilter {
     return Number(priceFilter) === price;
   }
 
+  filterModels(makeFilter) {
+    return this.uniqueModels().filter(model => {
+      let car = this.findCar(model);
+      return makeFilter === car.make;
+    });
+  }
+
+  findCar(model) {
+    return this.cars.find(car => {
+      return model === car.model;
+    });
+  }
+
   uniqueMakes() {
     let makes = this.cars.map(car => car.make);
     return uniq(makes).toSorted((a, b) => a - b);
@@ -91,12 +104,36 @@ class CarDOMInteractions {
     this.renderOptions();
 
     this.form.addEventListener('submit', this.handleFormSubmit.bind(this));
+    this.makeSelect.addEventListener('change', this.handleChangeMake.bind(this));
   }
 
   handleFormSubmit(event) {
     event.preventDefault();
     this.deleteCars();
     this.selectCars();
+  }
+
+  handleChangeMake() {
+    let make = this.makeSelect.value;
+    this.deleteModelOptions();
+    this.createAnyOption();
+
+    if (make === CarFilter.matchAny) {
+      this.optionsTemplate(this.modelSelect, this.filter.uniqueModels());
+      return;
+    };
+
+    let matchingModels = this.filter.filterModels(make);
+    this.optionsTemplate(this.modelSelect, matchingModels);
+  }
+
+  createAnyOption() {
+    let html = '<option>Any</option>';
+    this.modelSelect.insertAdjacentHTML('beforeend', html);
+  }
+
+  deleteModelOptions() {
+    this.modelSelect.innerHTML = '';
   }
 
   deleteCars() {
@@ -108,8 +145,6 @@ class CarDOMInteractions {
     const modelValue = this.modelSelect.value;
     const priceValue = this.priceSelect.value;
     const yearValue = this.yearSelect.value;
-
-    console.log(makeValue, modelValue, priceValue, yearValue);
 
     this.cars = this.filter.filter(makeValue, modelValue, 
       yearValue, priceValue);
