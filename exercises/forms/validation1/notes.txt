@@ -1,0 +1,27 @@
+Rules:
+  first Name, lastName, password, and email are all required
+  phone number optional
+  passwords must be ten characters long
+  phone numbers must use US style: 111-222-2233
+  emails conform to constraint validation pattern .+@.+
+
+  Implementation Notes:
+    required
+    maxlength and minlength
+    min max step
+    pattern (regex)
+
+  :user-invalid can be used to style anything that is invalid
+  :user-valid can be uesd to style anything that is valid
+
+  :valid / :invalid as well
+
+Functionality:
+  - When a form field loses focus, validate the field against the validation rule for hte field.
+    value not valid, display a red error message to the right of hte field. add red border too
+  - When a field with an error regains focus, the message should disappear
+  - It should not reappear after correcting the error.
+  - Clicking submit:
+    - don't send the form to the server if it has any validation errors. Instead, display an error
+      at the top of the page that says "Fix errors before submitting this form"
+  - form validation message should disappear when user corrects all fields with an error.

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Form Validation 1</title>
+    <meta charset="utf-8">
+    <link href="main.css" rel="stylesheet">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Sign Up</h1>
+    </header>
+    <main>
+      <form novalidate="true">
+        <fieldset>
+          <label for="name-input">Fist Name:</label>
+          <input type="text" id="name-input" required>
+        </fieldset>
+
+        <fieldset>
+          <label for="last-name-input">Last Name:</label>
+          <input type="text" id="last-name-input" required>
+        </fieldset>
+
+        <fieldset>
+          <label for="email-input">Email:</label>
+          <input type="email" id="email-input" pattern=".+@.+" required>
+        </fieldset>
+
+        <fieldset>
+          <label for="password-input">Password:</label>
+          <input type="password" minlength="10" maxlength="10" id="password-input" required>
+        </fieldset>
+
+        <fieldset>
+          <label for="phone-input">Phone:</label>
+          <input type="tel" pattern="\d{3}-\d{3}-\d{4}" id="phone-input">
+        </fieldset>
+
+        <button type="submit">Sign Up</button>
+
+      </form>
+    </main>
+  </body>
+</html>
