@@ -46,24 +46,6 @@ Plan:
   operators ['+', '*', '-']
 */
 
-const add = (a, b) => a + b;
-const multiply = (a, b) => a * b;
-const subtract = (a, b) => a - b;
-const divide = (a, b) => a / b;
-
-function determineOperation(operatorString, a, b) {
-  switch(operatorString) {
-    case '+':
-      return add(a, b);
-    case 'x':
-      return multiply(a, b);
-    case '-':
-      return subtract(a, b);
-    case '/':
-      return divide(a, b);
-  }
-}
-
 // console.log(determineOperation('*', 10, 10));
 
 // let numbers = [10, 10, 5, 3];
@@ -78,17 +60,70 @@ function determineOperation(operatorString, a, b) {
 //   return determineOperation(operator, acc, number);
 // }, firstNumber));
 
-// Plan:
-//   addToEntryWindow
-//   addToOperationWindow
-//   clearEntryWindow
-//   clearOperationWindow
-//   neg => place a - in front of the number.
+/*
+  parse it based on numbers and on operations
+  '111 + 6 x 10'
+
+  {
+    numbers: [111, 6, 10],
+    operators: ['+', 'x']
+  }
+
+  regex: potential for numbers to have a . -?\d+.{0,1}
+*/
+// let operation = '111 + -6 x 10.1 % / - ';
+
+// const numberRegex = /-?\d+.?\d*/g;
+// console.log(operation.match(numberRegex));
+
+// const operatorRegex = /[+x/%-] /g;
+// console.log(operation.match(operatorRegex));
+
+const add = (a, b) => a + b;
+const multiply = (a, b) => a * b;
+const subtract = (a, b) => a - b;
+const divide = (a, b) => a / b;
 
 class Calculator {
   constructor(operation, entry) {
     this.equation = operation + ` ${entry}`;
-    console.log(this.equation);
+  }
+
+  calculate() {
+    let {numbers, operators} = this.parseEquation();
+    let firstNumber = numbers.shift();
+
+    return numbers.reduce((accumulator, number, index) => {
+      let operator = operators[index];
+      return this.determineOperation(operator, accumulator, number);
+    }, firstNumber);
+  }
+
+  parseEquation() {
+    const numberRegex = /-?\d+.?\d*/g;
+    const operatorRegex = /[+x/%-] /g;
+
+    let numbers = this.equation.match(numberRegex).map(Number);
+    let operators = this.equation.match(operatorRegex)
+                                  .map(op => op.trim());
+
+    return {
+      numbers,
+      operators,
+    };
+  }
+
+  determineOperation(operatorString, a, b) {
+    switch(operatorString) {
+      case '+':
+        return add(a, b);
+      case 'x':
+        return multiply(a, b);
+      case '-':
+        return subtract(a, b);
+      case '/':
+        return divide(a, b);
+    }
   }
 }
 
@@ -100,7 +135,8 @@ class CalculatorInteractions {
 
   solve() {
     const calculator = new Calculator(this.operation, this.entry);
-    // this.entry = String(calculator.calculate());
+    this.entry = String(calculator.calculate());
+    this.operation = '';
   }
 
   addToEntryWindow(digit) {
@@ -148,16 +184,16 @@ console.log(calc.entry === '-6');
 calc.reverseSign();
 console.log(calc.entry === '6');
 
-calc.addToOperationWindow('*');
-console.log(calc.operation);
+calc.addToOperationWindow('x');
+console.log(calc.operation === '111 + 6 x');
 
 calc.addToEntryWindow('1');
 calc.addToEntryWindow('0');
 console.log(calc.entry === '10');
 
 calc.solve();
-
-// calc.solve();
+console.log(calc.entry === '1170');
+console.log(calc.operation === '');
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   console.log('hello');
