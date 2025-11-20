@@ -153,6 +153,10 @@ class CalculatorApp {
     this.entry = '0';
   }
 
+  addDecimal() {
+    this.entry += this.entry.includes('.') ? '' : '.';
+  }
+
   clearEntry() {
     this.entry = '0';
   }
@@ -197,6 +201,10 @@ class CalculatorInteractions {
     else if (this.isNegButton(button)) {
       this.makeNeg();
     }
+    else if (this.isDecimalButton(button)) {
+      console.log(this.app.entry);
+      this.addDecimal();
+    }
     else if (this.isClearEntryButton(button)) {
       this.clearEntryWindow();
     } else {
@@ -227,6 +235,11 @@ class CalculatorInteractions {
     this.operationWindow.textContent = this.app.operation;
   }
 
+  addDecimal() {
+    this.app.addDecimal();
+    this.updateEntryWindow();
+  }
+
   makeNeg() {
     this.app.reverseSign();
     this.updateEntryWindow();
@@ -245,6 +258,10 @@ class CalculatorInteractions {
 
   isEqualButton(button) {
     return button.textContent === CalculatorInteractions.solveKey;
+  }
+
+  isDecimalButton(button) {
+    return button.id === 'decimal';
   }
 
   isNegButton(button) {
