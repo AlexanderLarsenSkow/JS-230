@@ -83,6 +83,7 @@ const add = (a, b) => a + b;
 const multiply = (a, b) => a * b;
 const subtract = (a, b) => a - b;
 const divide = (a, b) => a / b;
+const modulo = (a, b) => a % b;
 
 class Calculator {
   constructor(operation, entry) {
@@ -123,6 +124,8 @@ class Calculator {
         return subtract(a, b);
       case '/':
         return divide(a, b);
+      case '%':
+        return modulo(a, b);
     }
   }
 }
@@ -237,7 +240,7 @@ class CalculatorInteractions {
   clear() {
     this.clearEntryWindow();
     this.app.clearOperation();
-    this.operationWindow.textContent = this.app.operation;
+    this.updateOperationWindow();
   }
 
   isEqualButton(button) {
