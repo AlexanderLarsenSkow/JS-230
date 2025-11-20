@@ -195,6 +195,6 @@ calc.solve();
 console.log(calc.entry === '1170');
 console.log(calc.operation === '');
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   console.log('hello');
-// });
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('hello');
+});
