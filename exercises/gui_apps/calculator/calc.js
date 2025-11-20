@@ -127,7 +127,7 @@ class Calculator {
   }
 }
 
-class CalculatorInteractions {
+class CalculatorApp {
   constructor() {
     this.entry = '0';
     this.operation = '';
@@ -150,11 +150,11 @@ class CalculatorInteractions {
     this.entry = '0';
   }
 
-  clearEntryWindow() {
+  clearEntry() {
     this.entry = '0';
   }
 
-  clearOperationWindow() {
+  clearOperation() {
     this.operation = '';
   }
 
@@ -165,36 +165,110 @@ class CalculatorInteractions {
   }
  }
 
- let calc = new CalculatorInteractions();
- calc.addToEntryWindow('1');
- console.log(calc.entry == '1');
- calc.addToEntryWindow('1');
- console.log(calc.entry === '11');
- calc.addToEntryWindow('1');
- console.log(calc.entry === '111');
- 
-calc.addToOperationWindow('+');
-console.log(calc.operation === '111 +');
-console.log(calc.entry === '0');
+class CalculatorInteractions {
+  static solveKey = '=';
+  static neg = 'NEG';
+  static clearEntry = 'CE';
+  static clearAll = 'C';
 
-calc.addToEntryWindow('6');
-calc.reverseSign();
-console.log(calc.entry === '-6');
+  constructor() {
+    this.app = new CalculatorApp();
+    this.entryWindow = document.querySelector('p.entry-window');
+    this.operationWindow = document.querySelector('p.operation');
+  }
 
-calc.reverseSign();
-console.log(calc.entry === '6');
+  clickHandler(event) {
+    let button = event.target;
 
-calc.addToOperationWindow('x');
-console.log(calc.operation === '111 + 6 x');
+    if (this.isDigitButton(button)) {
+      let digit = button.textContent;
+      this.updateEntryWindow(digit);
+    }
+    else if (this.isOperatorButton(button)) {
+      let operator = button.textContent;
+      this.updateOperationWindow(operator);
+    }
+    else if (this.isEqualButton(button)) {
+      this.answer();
+    }
+    else if (this.isNegButton(button)) {
+      this.makeNeg();
+    }
+    else if (this.isClearEntryButton(button)) {
+      this.clearEntryWindow();
+    } else {
+      this.clear();
+    }
+  }
 
-calc.addToEntryWindow('1');
-calc.addToEntryWindow('0');
-console.log(calc.entry === '10');
+  answer() {
+    this.app.solve();
+    this.updateEntryWindow();
+    this.updateOperationWindow()
+  }
 
-calc.solve();
-console.log(calc.entry === '1170');
-console.log(calc.operation === '');
+  updateEntryWindow(digit) {
+    if (digit) {
+      this.app.addToEntryWindow(digit);
+    }
+
+    this.entryWindow.textContent = this.app.entry;
+  }
+
+  updateOperationWindow(operator) {
+    if (operator) {
+      this.app.addToOperationWindow(operator);
+      this.updateEntryWindow();
+    }
+
+    this.operationWindow.textContent = this.app.operation;
+  }
+
+  makeNeg() {
+    this.app.reverseSign();
+    this.updateEntryWindow();
+  }
+
+  clearEntryWindow() {
+    this.app.clearEntry();
+    this.updateEntryWindow();
+  }
+
+  clear() {
+    this.clearEntryWindow();
+    this.app.clearOperation();
+    this.operationWindow.textContent = this.app.operation;
+  }
+
+  isEqualButton(button) {
+    return button.textContent === CalculatorInteractions.solveKey;
+  }
+
+  isNegButton(button) {
+    return button.textContent === CalculatorInteractions.neg;
+  }
+
+  isClearEntryButton(button) {
+    return button.textContent === CalculatorInteractions.clearEntry;
+  }
+
+  isClearAllButton(button) {
+    return button.textContent === CalculatorInteractions.clearAll;
+  }
+
+  isDigitButton(button) {
+    return button.classList.contains('digit');
+  }
+
+  isOperatorButton(button) {
+    return button.classList.contains('operator');
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('hello');
+  const calcButtons = document.querySelector('div.buttons');
+  const interactions = new CalculatorInteractions();
+  const handler = interactions.clickHandler.bind(interactions);
+
+  calcButtons.addEventListener('click', handler);
 });
