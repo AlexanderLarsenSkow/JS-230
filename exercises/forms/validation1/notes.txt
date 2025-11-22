@@ -26,9 +26,11 @@ Rules:
     - valueMissing: returns true if missing and is required in HTML
 
   Events:
-    blur event on teh form, checks if the target meets the requirements.
+    blur focusout on the form, checks if the target meets the requirements.
       -blur also removes the error message at the top of the form IF no more errors.
     submit event, puts error message at very top if something required hasn't been met.
+      - the submit event should also make every invalid input red bordered and put an error message
+        next ot it.
     focus event on the form, removes red / green styling and any error messages if they exist
     
     make a span element that has the error message as its content.

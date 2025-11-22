@@ -17,28 +17,31 @@ class FormValidator {
 
     console.log(this.allInputs);
   }
+
+  focusOutHandle(event) {
+    let input = event.target;
+    if (input.tagName !== 'INPUT') return;
+  }
+
+  submitErrorHandle(event) {
+    event.preventDefault();
+
+    if (this.someInvalid()) {
+      let html = '<span>Fix errors before submitting this form.</span>'
+      this.form.insertAdjacentHTML('beforebegin', html);
+    }
+  }
+
+  someInvalid() {
+    return this.allInputs.some(input => !input.checkValidity());
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  new FormValidator();
+  const validator = new FormValidator();
 
   const form = document.querySelector('form');
-  let formInput = document.querySelector('form input');
 
-  form.addEventListener('focusout', event => {
-    let input = event.target;
-    console.log(input);
-    // let target = event.target;
-    if (input.tagName !== 'INPUT') return;
-
-    console.log(event.target.checkValidity());
-    console.log(event.target.id === 'name-input');
-
-    if (!event.target.checkValidity()) {
-      // event.target.style.backgroundColor = 'red';
-      console.log(input.validationMessage);
-      console.log(input.validationMessage);
-      console.log(input.validity);
-    }
-  });
+  form.addEventListener('focusout', validator.focusOutHandle.bind(validator));
+  form.addEventListener('submit', validator.submitErrorHandle.bind(validator));
 });
