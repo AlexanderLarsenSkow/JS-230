@@ -25,12 +25,20 @@ Rules:
     - valid: returns true if all valid
     - valueMissing: returns true if missing and is required in HTML
 
-  Methods:
-    blur event
+  Events:
+    blur event on teh form, checks if the target meets the requirements.
+      -blur also removes the error message at the top of the form IF no more errors.
+    submit event, puts error message at very top if something required hasn't been met.
+    focus event on the form, removes red / green styling and any error messages if they exist
+    
+    make a span element that has the error message as its content.
+          <span class="error-message">Error Message that is very long</span>
 
     checkValidity()
       returns true if element's value has no validity problems.
         - if invalid element, fires invalid event on element
+
+
 
 Functionality:
   - When a form field loses focus, validate the field against the validation rule for hte field.

@@ -21,17 +21,24 @@ class FormValidator {
 
 document.addEventListener('DOMContentLoaded', () => {
   new FormValidator();
-  console.log(document.querySelector('form'));
 
+  const form = document.querySelector('form');
   let formInput = document.querySelector('form input');
-  console.log(formInput);
 
-  formInput.addEventListener('blur', event => {
+  form.addEventListener('focusout', event => {
+    let input = event.target;
+    console.log(input);
+    // let target = event.target;
+    if (input.tagName !== 'INPUT') return;
+
     console.log(event.target.checkValidity());
     console.log(event.target.id === 'name-input');
 
     if (!event.target.checkValidity()) {
-      event.target.style.backgroundColor = 'red';
+      // event.target.style.backgroundColor = 'red';
+      console.log(input.validationMessage);
+      console.log(input.validationMessage);
+      console.log(input.validity);
     }
   });
 });

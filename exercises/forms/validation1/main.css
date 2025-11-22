@@ -1,10 +1,18 @@
-*:user-invalid {
+input:user-invalid {
   border: 2px solid red;
 }
 
-*:user-valid {
+input:user-valid {
   border: 2px solid green;
 }
+
+/* input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid green;
+} */
 
 body * {
   font-family: sans-serif, arial, helvetica;
@@ -29,8 +37,14 @@ fieldset {
   display: flex;
   align-items: center;
   border: none;
-  width: 30%;
+  width: 100%;
   padding: 15px;
+}
+
+span.error-message {
+  display: none;
+  /* display: inline-block; */
+  margin-left: 30px;
 }
 
 fieldset label {
@@ -39,7 +53,8 @@ fieldset label {
 }
 
 fieldset input {
-  flex-grow: 1;
+  padding: 10px;
+  width: 25%;
 }
 
 form button {
@@ -52,9 +67,10 @@ button, input {
   border-radius: 4px;
 }
 
-.input-container {
+/* .input-container {
   background-color: green;
+  width: 35%;
   display: flex;
   justify-content: baseline;
   align-items: center;
-}
+} */
