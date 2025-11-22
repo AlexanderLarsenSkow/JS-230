@@ -14,27 +14,27 @@
       <form novalidate="true">
         <fieldset>
           <label for="name-input">Fist Name:</label>
-          <input type="text" id="name-input" required>
+          <input type="text" id="name-input" name="first name" required>
         </fieldset>
 
         <fieldset>
           <label for="last-name-input">Last Name:</label>
-          <input type="text" id="last-name-input" required>
+          <input type="text" id="last-name-input" name="last name" required>
         </fieldset>
 
         <fieldset>
           <label for="email-input">Email:</label>
-          <input type="email" id="email-input" pattern=".+@.+" required>
+          <input type="email" id="email-input" name="email" pattern=".+@.+" required>
         </fieldset>
 
         <fieldset>
           <label for="password-input">Password:</label>
-          <input type="password" minlength="10" maxlength="10" id="password-input" required>
+          <input type="password" name="password" minlength="10" maxlength="10" id="password-input" required>
         </fieldset>
 
         <fieldset>
           <label for="phone-input">Phone:</label>
-          <input type="tel" pattern="\d{3}-\d{3}-\d{4}" id="phone-input">
+          <input type="tel" name="phone" pattern="\d{3}-\d{3}-\d{4}" id="phone-input">
         </fieldset>
 
         <button type="submit">Sign Up</button>

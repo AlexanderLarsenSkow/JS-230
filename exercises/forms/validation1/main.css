@@ -42,8 +42,7 @@ fieldset {
 }
 
 span.error-message {
-  display: none;
-  /* display: inline-block; */
+  color: rgb(146, 9, 9);
   margin-left: 30px;
 }
 
