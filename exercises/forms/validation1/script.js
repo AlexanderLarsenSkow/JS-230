@@ -42,12 +42,15 @@ class FormValidator {
     let input = event.target;
     if (input.tagName !== 'INPUT') return;
 
+    this.addErrorMessaging(input);
+  }
+
+  addErrorMessaging(input) {
     if (!input.checkValidity() && this.noErrorMessage(input)) {
       let message = this.determineErrorMessage(input);
       this.createErrorHTML(input, message);
       input.style.border = '2px solid red';
     }
-
   }
 
   submitErrorHandle(event) {
@@ -56,6 +59,8 @@ class FormValidator {
     if (this.someInvalid()) {
       let html = '<span>Fix errors before submitting this form.</span>'
       this.form.insertAdjacentHTML('beforebegin', html);
+
+      this.allInputs.forEach(this.addErrorMessaging.bind(this));
     }
   }
 
@@ -89,9 +94,12 @@ class FormValidator {
 
   noErrorMessage(input) {
     let sibling = input.nextElementSibling;
+    if (sibling && sibling.tagName === 'DIV') sibling.remove();
+
+    sibling = input.nextElementSibling;
     if (sibling) return sibling.tagName !== 'SPAN';
 
-    return input.nextElementSibling === undefined;
+    return input.nextElementSibling === null;
   }
 
   hasRequireError(input) {
