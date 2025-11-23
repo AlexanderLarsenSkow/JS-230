@@ -38,9 +38,26 @@ class FormValidator {
     ];
   }
 
+  focusInHandle(event) {
+    let input = event.target;
+    if (input.tagName !== 'INPUT') return;
+
+    input.style.border = '2px solid green';
+
+    if (!this.noErrorMessage(input)) {
+      input.nextElementSibling.remove();
+    }
+  }
+
   focusOutHandle(event) {
     let input = event.target;
     if (input.tagName !== 'INPUT') return;
+
+    input.style.border = '2px solid black';
+
+    if (!this.someInvalid() && this.hasSubmitErrorMessage()) {
+      document.querySelector('main span').remove();
+    }
 
     this.addErrorMessaging(input);
   }
@@ -102,6 +119,10 @@ class FormValidator {
     return input.nextElementSibling === null;
   }
 
+  hasSubmitErrorMessage() {
+    return !!document.body.querySelector('main span');
+  }
+
   hasRequireError(input) {
     return input.hasAttribute('required') && input.validity.valueMissing;
   }
@@ -122,9 +143,9 @@ class FormValidator {
 
 document.addEventListener('DOMContentLoaded', () => {
   const validator = new FormValidator();
-
   const form = document.querySelector('form');
 
   form.addEventListener('focusout', validator.focusOutHandle.bind(validator));
+  form.addEventListener('focusin', validator.focusInHandle.bind(validator));
   form.addEventListener('submit', validator.submitErrorHandle.bind(validator));
 });
