@@ -71,3 +71,6 @@ Part 2:
 
 Having messaging for the credit card
   - need to change the input whenever 
+
+Part 3:
+  - move the cursor over to the next one -- Use Tab

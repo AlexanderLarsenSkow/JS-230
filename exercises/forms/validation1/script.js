@@ -24,7 +24,9 @@ class ErrorMessager {
   }
 }
 
-class FormValidator {  
+class FormValidator {
+  static MAX_CREDIT_CARD_LENGTH = 4;
+  
   constructor() {
     this.form = document.querySelector('form');
     this.firstName = document.querySelector('#name-input');
@@ -105,10 +107,30 @@ class FormValidator {
     if (input.tagName !== 'INPUT' || !this.isKeyControlled(input)) return;
 
     const pattern = this.patterns[input.name];
+    console.log(input.value.length);
     
     if (!this.isAcceptedKey(key) && !pattern.test(key)) {
       event.preventDefault();
     }
+  }
+
+  inputHandle(event) {
+    let input = event.target;
+    if (!this.isCreditCard(input)) return;
+
+    if (input.value.length === input.maxLength) {
+      this.moveCreditCardFocus(input);
+    }
+  }
+
+  moveCreditCardFocus(input) {
+    const id = input.id;
+    let idNumber = Number(id.replaceAll(/[^\d]/g, ''));
+    if (idNumber === FormValidator.MAX_CREDIT_CARD_LENGTH) return;
+
+    const nextNumber = String(idNumber + 1);
+    const nextInput = document.querySelector(`#credit-card-${nextNumber}`);
+    nextInput.focus();
   }
 
   isAcceptedKey(key) {
@@ -202,4 +224,5 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('focusin', validator.focusInHandle.bind(validator));
   form.addEventListener('submit', validator.submitErrorHandle.bind(validator));
   form.addEventListener('keydown', validator.keydownHandle.bind(validator));
+  form.addEventListener('input', validator.inputHandle.bind(validator));
 });
