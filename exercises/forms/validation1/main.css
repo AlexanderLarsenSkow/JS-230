@@ -6,14 +6,6 @@ input:user-valid {
   border: 2px solid green;
 }
 
-/* input:invalid {
-  border: 2px solid red;
-}
-
-input:valid {
-  border: 2px solid green;
-} */
-
 body * {
   font-family: sans-serif, arial, helvetica;
 }
@@ -56,6 +48,11 @@ fieldset input {
   width: 25%;
 }
 
+input.credit-card {
+  width: 4.5%;
+  margin: 0 2px;
+}
+
 form button {
   margin-top: 15px;
   cursor: pointer;
@@ -65,11 +62,3 @@ button, input {
   border: 2px solid black;
   border-radius: 4px;
 }
-
-/* .input-container {
-  background-color: green;
-  width: 35%;
-  display: flex;
-  justify-content: baseline;
-  align-items: center;
-} */
