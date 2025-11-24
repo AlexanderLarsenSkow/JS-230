@@ -1,0 +1,72 @@
+const questions = [
+  {
+    id: 1,
+    description: "Who is the author of <cite>The Hitchhiker's Guide to the Galaxy</cite>?",
+    options: ['Dan Simmons', 'Douglas Adams', 'Stephen Fry', 'Robert A. Heinlein'],
+  },
+  {
+    id: 2,
+    description: 'Which of the following numbers is the answer to Life, the \
+                  Universe and Everything?',
+    options: ['66', '13', '111', '42'],
+  },
+  {
+    id: 3,
+    description: 'What is Pan Galactic Gargle Blaster?',
+    options: ['A drink', 'A machine', 'A creature', 'None of the above'],
+  },
+  {
+    id: 4,
+    description: 'Which star system does Ford Prefect belong to?',
+    options: ['Aldebaran', 'Algol', 'Betelgeuse', 'Alpha Centauri'],
+  },
+];
+
+const answerKey = { '1': 'Douglas Adams', '2': '42', '3': 'A drink', '4': 'Betelgeuse' };
+
+Step One:
+
+Render the html based on the questions
+<fieldset id="question-${question ID here}">
+<label> Description</label>
+  for Each option:
+    <input value = option, id = option name = question id (number)
+    label for the id , option name
+
+</fieldset>
+
+Step Two:
+  whichever one is selected, that's the value we pick.
+    fieldset data-user-choice 
+
+  Problem:
+    - How do we tell which is one selected in the code?
+
+    Ideas for dealing with this:
+    1
+      - click event listener on the form that checks for clicks on the input.
+      - Whatever the target input is, its parent element will receive that as a data-answer,
+        which would then be checked against the answer key.
+
+    2 :)
+      - FormData
+      - Essentially, we create an array of arrays that is the form data. W
+        -> What do you do when the user does not select a choice though?
+        Answer: you iterate through the answer key and check to see if the properties in the key
+          match the given answers in the form data array you serialize.
+  
+  Step Three:
+    Using the selected value for each fieldset, iterate through the fieldsets and append
+    take the selected value, and check to see if the number id for the fieldset matches
+      the answer in the answerKey object.
+
+      a status message:
+        Correct: "Correct Answer"
+        Incorrect: "Wrong Answer. The correct answer is: "Douglas Adams""
+        missing: You didn't answer this question. The correct answer is "..."
+
+Event Listeners:
+  - submit event on the form itself -- this knows the selected values somehow.
+  - click event on the reset button at the bottom -- resets the entire page, deletes status messages
+    / unclicks every answer in the quiz.
+
