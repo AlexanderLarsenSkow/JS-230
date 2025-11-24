@@ -18,6 +18,10 @@ class ErrorMessager {
   static passwordLength() {
     return 'Password must be 10 characters long.';
   }
+
+  static creditCard() {
+    return 'Credit card must be 16 digits in groups of 4.';
+  }
 }
 
 class FormValidator {
@@ -27,6 +31,7 @@ class FormValidator {
     this.lastName = document.querySelector('#last-name-input');
     this.email = document.querySelector('#email-input');
     this.password = document.querySelector('#password-input');
+    this.lastCreditCard = document.querySelector('#credit-card-4');
     this.phone = document.querySelector('#phone-input');
 
     this.allInputs = [
@@ -34,7 +39,8 @@ class FormValidator {
       this.lastName,
       this.email, 
       this.password,
-      this.phone
+      this.lastCreditCard,
+      this.phone,
     ];
   }
 
@@ -43,6 +49,8 @@ class FormValidator {
     if (input.tagName !== 'INPUT') return;
 
     input.style.border = '2px solid green';
+
+    if (this.isCreditCard(input)) input = this.lastCreditCard;
 
     if (!this.noErrorMessage(input)) {
       input.nextElementSibling.remove();
@@ -58,12 +66,14 @@ class FormValidator {
     if (!this.someInvalid() && this.hasSubmitErrorMessage()) {
       document.querySelector('main span').remove();
     }
-
+    
     this.addErrorMessaging(input);
   }
 
   addErrorMessaging(input) {
     if (!input.checkValidity() && this.noErrorMessage(input)) {
+      if (this.isCreditCard(input)) input = this.lastCreditCard;
+
       let message = this.determineErrorMessage(input);
       this.createErrorHTML(input, message);
       input.style.border = '2px solid red';
@@ -89,7 +99,7 @@ class FormValidator {
   determineErrorMessage(input) {
     let message;
 
-    if (this.hasRequireError(input)) {
+    if (this.hasRequireError(input) && !this.isCreditCard(input)) {
       message = ErrorMessager.required(input);
     }
     else if (this.hasPhoneError(input)) {
@@ -100,6 +110,9 @@ class FormValidator {
     }
     else if (this.hasPasswordError(input)) {
       message = ErrorMessager.passwordLength();
+    }
+    else if (this.hasCreditCardError(input)) {
+      message = ErrorMessager.creditCard();
     }
 
     return message;
@@ -131,6 +144,11 @@ class FormValidator {
     return input === this.phone && this.phone.validity.patternMismatch;
   }
 
+  hasCreditCardError(input) {
+    return input.classList.contains('credit-card') && 
+      (input.validity.patternMismatch || input.validity.valueMissing);
+  }
+
   hasEmailError(input) {
     return input === this.email && this.email.validity.patternMismatch;
   }
@@ -138,6 +156,10 @@ class FormValidator {
   hasPasswordError(input) {
     return input === this.password && 
     (this.password.validity.tooLong || this.password.validity.tooShort);
+  }
+
+  isCreditCard(input) {
+    return input.classList.contains('credit-card');
   }
 }
 

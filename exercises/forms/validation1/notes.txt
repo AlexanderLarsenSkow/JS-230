@@ -54,3 +54,20 @@ Functionality:
 
 Event Listeners:
   form submit
+
+Part 2:
+  - Adding Credit Card fieldset with 4 inputs, each exact length of 4 numbers
+    credit card only allows numeric digits
+  - first name and last name shouldn't allow numbers
+  - phone number should only allow numeric digits
+
+  use keydown events to prevent keys from being entered that don't match the pattern.
+
+  new Messaging:
+    - Credit card must be 16 digits in 4 groups of 4.
+
+  basically just figuring out how to prevent certain keys from being input...
+    - I think I did this in some of hte typing exercises before.  
+
+Having messaging for the credit card
+  - need to change the input whenever 
