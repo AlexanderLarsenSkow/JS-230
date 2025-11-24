@@ -22,6 +22,10 @@ class ErrorMessager {
   static creditCard() {
     return 'Credit card must be 16 digits in groups of 4.';
   }
+
+  static default() {
+    return 'Bad Input';
+  }
 }
 
 class FormValidator {
@@ -81,9 +85,10 @@ class FormValidator {
 
   addErrorMessaging(input) {
     if (!input.checkValidity() && this.noErrorMessage(input)) {
+      let message = this.determineErrorMessage(input);
+
       if (this.isCreditCard(input)) input = this.lastCreditCard;
 
-      let message = this.determineErrorMessage(input);
       this.createErrorHTML(input, message);
       input.style.border = '2px solid red';
     }
@@ -107,7 +112,6 @@ class FormValidator {
     if (input.tagName !== 'INPUT' || !this.isKeyControlled(input)) return;
 
     const pattern = this.patterns[input.name];
-    console.log(input.value.length);
     
     if (!this.isAcceptedKey(key) && !pattern.test(key)) {
       event.preventDefault();
@@ -162,6 +166,8 @@ class FormValidator {
     }
     else if (this.hasCreditCardError(input)) {
       message = ErrorMessager.creditCard();
+    } else {
+      message = ErrorMessager.default();
     }
 
     return message;
