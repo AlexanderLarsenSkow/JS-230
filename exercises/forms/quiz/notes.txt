@@ -70,3 +70,28 @@ Event Listeners:
   - click event on the reset button at the bottom -- resets the entire page, deletes status messages
     / unclicks every answer in the quiz.
 
+
+Algorithm:
+  Create a new class: QuizInteractions
+
+  submitHandler
+  1 add an event listener to the form that takes a submit event
+  2 In the handler, take the formData and create an object with the id as properties
+    - Each name for the radio input is "question1", "question2" etc, so take just the numbers as the keys
+
+  3 Iterate through the correct answers to determine the status message for the question
+        Correct: "Correct Answer"
+        Incorrect: "Wrong Answer. The correct answer is: "Douglas Adams""
+        missing: You didn't answer this question. The correct answer is "..."
+
+  4 Inside the iteration, take the id, add to "question" for the id of each fieldset
+    - add a p class="status-message " tag with the message as the body
+    - also pass in a correct boolean that determines the second class, "correct" or "incorrect"
+    - 
+
+  resetHandler
+    1 add a click event to the reset button in the html
+    2 Find all p.status-message tags
+    3 remove them from the html
+    4 reset the form
+    5 change the submit quiz button to green background
