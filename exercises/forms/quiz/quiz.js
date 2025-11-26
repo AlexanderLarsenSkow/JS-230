@@ -71,8 +71,16 @@ class QuizApp {
     this.disableSubmit();
   }
 
-  resetHandler(event) {
-    console.log(event.currentTarget);
+  resetHandler(_) {
+    let statusMessages = this.form.querySelectorAll('p.status-message');
+    statusMessages.forEach(message => message.remove());
+    this.form.reset();
+    this.resetSubmit();
+  }
+
+  resetSubmit() {
+    this.submit.classList.remove('disabled');
+    this.submit.removeAttribute('disabled');
   }
 
   disableSubmit() {
@@ -135,7 +143,7 @@ class QuizApp {
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form.quiz');
-  const resetButton = form.querySelector('#reset');
+  const resetButton = form.querySelector('#reset-button');
   const template = new QuizTemplate(form, questions);
   const app = new QuizApp(form, answerKey);
 
