@@ -80,6 +80,9 @@ Algorithm:
     - Each name for the radio input is "question1", "question2" etc, so take just the numbers as the keys
 
   3 Iterate through the correct answers to determine the status message for the question
+    - first, convert answerKey to an array with Object.entries. Iterate through the array and check
+      the object from the formData
+
         Correct: "Correct Answer"
         Incorrect: "Wrong Answer. The correct answer is: "Douglas Adams""
         missing: You didn't answer this question. The correct answer is "..."
@@ -88,6 +91,10 @@ Algorithm:
     - add a p class="status-message " tag with the message as the body
     - also pass in a correct boolean that determines the second class, "correct" or "incorrect"
     - 
+
+  biggest issue thus far:
+    determining the class by the status.
+    determining the message is easy, but we only want that logic to appear one time.
 
   resetHandler
     1 add a click event to the reset button in the html
